@@ -1,0 +1,35 @@
+@startuml
+
+class User {    
+ +name: String
+ +surname: String
+ +middleName: String
+ +gender: String
+ +birthday: Date
+ +city: String
+ +imageUrl: String
+ +description: String
+ +nickname: String
+ +hardskills: String
+ +email: String
+ +phone: String
+ +subscriptions: Subscription
+ +subscribers: Subscriber
+}
+
+class Subscription{    
+ +name: String
+ +surname: String
+ +imageUrl: String
+}
+
+class Subscriber{    
+ +name: String
+ +surname: String
+ +imageUrl: String
+}
+
+Subscription --* User
+Subscriber --* User
+
+@enduml
