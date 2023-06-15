@@ -14,15 +14,19 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private SubscriptionRepository subscriptionRepository;
 
+    @Autowired
+    public UserService(UserRepository userRepository, SubscriptionRepository subscriptionRepository) {
+        this.userRepository = userRepository;
+        this.subscriptionRepository = subscriptionRepository;
+    }
+
     public String createUser(User user) {
-        userRepository.save(user);
-        return String.format("User with id = %s added", user.getId());
+        User savedUser = userRepository.save(user);
+        return String.format("User with id = %s added", savedUser.getId());
     }
 
     public User getUser(Long id) {
@@ -37,25 +41,25 @@ public class UserService {
         if(!userRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        userRepository.save(user);
-        return String.format("User with id = %s was modified", id);
+        User savedUser = userRepository.save(user);
+        return String.format("User with id = %s was modified", savedUser.getId());
     }
 
     public String deleteUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         user.setDeleted(true);
-        userRepository.save(user);
-        return String.format("User with id = %s was deleted", id);
+        User savedUser = userRepository.save(user);
+        return String.format("User with id = %s was deleted", savedUser.getId());
     }
 
     public String subscribe(Subscription subscription) {
-        if(!subscriptionRepository.existsById(subscription.getSubscriberId()) &&
-                subscriptionRepository.existsById(subscription.getSubscriptionId())) {
+        if(!userRepository.existsById(subscription.getSubscriberId()) &&
+                userRepository.existsById(subscription.getSubscriptionId())) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE);
         }
-        subscriptionRepository.save(subscription);
+        Subscription savedSubscription = subscriptionRepository.save(subscription);
 
-        return String.format("User with id = %s subscribed on user with id = %s", subscription.getSubscriberId(), subscription.getSubscriptionId());
+        return String.format("User with id = %s subscribed on user with id = %s", savedSubscription.getSubscriberId(), savedSubscription.getSubscriptionId());
     }
 
     public String unsubscribe(Long subscriberId, Long subscriptionId) {

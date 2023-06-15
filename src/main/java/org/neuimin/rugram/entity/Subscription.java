@@ -23,6 +23,12 @@ public class Subscription {
 
     }
 
+    public Subscription(Long id, Long subscriberId, Long subscriptionId) {
+        this.id = id;
+        this.subscriberId = subscriberId;
+        this.subscriptionId = subscriptionId;
+    }
+
     public Subscription(Long subscriberId, Long subscriptionId) {
         this.subscriberId = subscriberId;
         this.subscriptionId = subscriptionId;

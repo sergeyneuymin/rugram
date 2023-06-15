@@ -76,4 +76,21 @@ public class User {
         this.phone = phone;
         this.isDeleted = isDeleted;
     }
+
+    public User(Long id, String name, String surname, String middleName, Date birthday, String gender, City city, String imageUrl, String description, String nickname, String hardskills, String email, String phone, boolean isDeleted) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.city = city;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.nickname = nickname;
+        this.hardskills = hardskills;
+        this.email = email;
+        this.phone = phone;
+        this.isDeleted = isDeleted;
+    }
 }
