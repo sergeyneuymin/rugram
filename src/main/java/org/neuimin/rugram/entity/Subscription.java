@@ -5,12 +5,13 @@ import lombok.Data;
 
 @Entity
 @Table(name = "subscriptions")
+@SequenceGenerator(name = "userIdSeq", sequenceName = "user_id_seq", allocationSize = 1)
 @Data
 public class Subscription {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIdSeq")
+    @Column(name = "id", nullable = false, columnDefinition = "serial")
     private Long id;
 
     @Column(name = "subscriber_id")

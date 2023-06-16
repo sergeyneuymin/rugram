@@ -32,7 +32,7 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "city_id")
     private City city;
 
