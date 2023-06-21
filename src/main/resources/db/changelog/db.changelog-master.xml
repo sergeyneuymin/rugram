@@ -1,0 +1,61 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Admin (generated)" id="1687276785715-1">
+        <createTable tableName="cities">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="cities_pkey"/>
+            </column>
+            <column name="city" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1687276785715-2">
+        <createTable tableName="subscriptions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="subscriptions_pkey"/>
+            </column>
+            <column name="subscriber_id" type="BIGINT"/>
+            <column name="subscription_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1687276785715-3">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" startWith="2" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="birthday" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="hardskills" type="VARCHAR(255)"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+            <column name="is_deleted" type="BOOLEAN"/>
+            <column name="middle_name" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="nickname" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="city_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1687276785715-4">
+        <createIndex indexName="i_users_gender" tableName="users">
+            <column name="gender"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1687276785715-5">
+        <createIndex indexName="i_users_city" tableName="users">
+            <column name="city_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1687276785715-6">
+        <createIndex indexName="i_users_gender_city" tableName="users">
+            <column name="gender"/>
+            <column name="city_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1687276785715-7">
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="users" constraintName="fkn36jwt4acj3il2ixvv2c0ncco" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cities" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
