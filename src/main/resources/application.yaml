@@ -1,9 +1,17 @@
 spring:
   datasource:
-    url: dbc:postgresql://postgres-db:5432/users
+    url: jdbc:postgresql://postgres-db:5432/users
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
+  liquibase:
+    drop-first: true
+    change-log: classpath:db/changelog/db.changelog-master/xml
 
 server:
   port: 8080
+
